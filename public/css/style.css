@@ -1,0 +1,109 @@
+body {
+    background-color: #ced4da;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: auto;
+    text-align: center;
+}
+
+.login-form,
+.contenedor {
+    background-image: url("https://static.wixstatic.com/media/46d6af_6d24c6786ebf4bbbb013c7a2aa36d79d~mv2.png/v1/fill/w_600,h_400,al_c,q_85,usm_0.66_1.00_0.01/sin%20fondo%20libros.webp");
+    width: 400px;
+    height: 400px;
+    padding: 16px;
+    margin: 0 auto;
+    border-color: black;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    margin-top: 100px;
+}
+
+.login-form h1 {
+    text-align: center;
+    color: midnightblue;
+    font-size: 28px;
+    padding: 70px 0 10px 0;
+}
+
+.login-form input[type="password"],
+.login-form input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ced4da;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    background-color: #6f42c1;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+    color: #ffffff;
+}
+
+.btn-login:hover,
+.btn-login:active {
+    color: #fff;
+    background-color: #61428f;
+    border-color: #61428f;
+}
+
+.btn-login:focus {
+    box-shadow: 0 0 0 3px rgba(121, 82, 179, 0.25);
+}
+
+.principal {
+    text-align: center;
+}
+
+
+/* Estilos de link para ir a LOGIN*/
+
+.a-login:link,
+.a-login:visited {
+    background-color: white;
+    color: black;
+    border: 2px solid #10B981;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.a-login:hover,
+.a-login:active {
+    background-color: #10B981;
+    color: white;
+}
+
+
+/* Estilos de link para realizar el LOGOUT*/
+
+.a-logout:link,
+.a-logout:visited {
+    background-color: white;
+    color: black;
+    border: 2px solid #F87171;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.a-logout:hover,
+.a-logout:active {
+    background-color: #F87171;
+    color: white;
+}
+
+h5 {
+    color: #ffffff;
+    font-size: 16px;
+}
