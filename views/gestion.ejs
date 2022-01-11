@@ -34,6 +34,82 @@
                     <% } %>
             </div>
         </nav>
+        <div eblclass="container" style="padding: 30px;">
+            <div class="input-group" style="width: 500px;">
+                <form action="/find" method="POST">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="input-group mb-3" style="margin-top: 25px;">
+                                    <input type="text" class="form-control" placeholder="Titulo" aria-label="Recipient's username" aria-describedby="button-addon2" name="buscar" id="buscar">
+                                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Buscar</button>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="/create" class="btn btn-outline-success mt-4"><i class='bx bxs-plus-circle bx-md'></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <table class="table table-bordered table-striped text-center mt-4">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th scope="col">ID LIBRO</th>
+                        <th scope="col">ISBN</th>
+                        <th scope="col">TITULO</th>
+                        <th scope="col">AUTOR</th>
+                        <th scope="col">EDITORIAL</th>
+                        <th scope="col">AÑO</th>
+                        <th scope="col">EDITAR/ELIMINAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% results.forEach((libro)=>{ %>
+                        <tr>
+                            <td>
+                                <%= libro.idLibro %>
+                            </td>
+                            <td>
+                                <%= libro.isbn %>
+                            </td>
+                            <td>
+                                <%= libro.titulo %>
+                            </td>
+                            <td>
+                                <%= libro.autor %>
+                            </td>
+                            <td>
+                                <%= libro.editorial %>
+                            </td>
+                            <td>
+                                <%= libro.anoPublicacion %>
+                            </td>
+                            <td>
+                                <a href="/edit/<%= libro.idLibro %>" class="btn btn-outline-info"><i class='bx bxs-edit'></i></a>
+                                <a href="/delete/<%= libro.idLibro %>" class="btn btn-outline-danger"><i class='bx bxs-trash-alt'></i></a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <% if (typeof alert != "undefined")  { %>
+            <script>
+                Swal.fire({
+                    title: '<%= alertTitle %>',
+                    text: '<%= alertMessage %>',
+                    icon: '<%= alertIcon %>',
+                    showConfirmButton: <%= showConfirmButton %>,
+                    timer: <%= timer %>
+                }).then(() => {
+                    window.location = '/<%= ruta %>'
+                })
+            </script>
+            <% } %>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 
 </html>

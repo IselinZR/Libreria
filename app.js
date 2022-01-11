@@ -112,6 +112,73 @@ app.get('/logout', function(req, res) {
     })
 });
 
+//CRUD
+
+app.get('/create', (req, res) => {
+    res.render('create');
+})
+
+app.post('/find', async(req, res) => {
+    if (req.session.loggedin) {
+        const buscar = req.body.buscar;
+        connection.query('SELECT * FROM libro WHERE titulo LIKE ?', '%' + buscar + '%', (error, results) => {
+            if (error) {
+                throw error;
+            } else {
+                return res.render('gestion', {
+                    login: true,
+                    name: req.session.name,
+                    results: results
+                });
+            }
+        })
+    } else {
+        return res.render('index', {
+            login: false,
+            name: 'Debe iniciar sesión',
+        });
+    }
+})
+
+app.get('/edit/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query('SELECT * FROM libro WHERE idLibro=?', [id], (error, results) => {
+        if (error) {
+            throw error;
+        } else {
+            return res.render('edit', { libro: results[0] });
+        }
+    });
+});
+
+app.get('/delete/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query('DELETE FROM libro WHERE idLibro = ?', [id], (error, results) => {
+        if (error) {
+            console.log(error);
+        } else {
+            res.redirect('/')
+                /*return res.render('gestion', {
+                alert: true,
+                alertTitle: "ELIMINAR REGISTRO",
+                alertMessage: "¡Se elimino registro correctamente!",
+                alertIcon: 'success',
+                showConfirmButton: false,
+                timer: 1500,
+                ruta: ''
+            });*/
+        }
+    })
+});
+
+const crud = require('./controllers/crud');
+
+app.post('/save', crud.save);
+//app.post('/find', crud.find);
+app.post('/update', crud.update);
+
+module.exports = app;
+
 app.listen(5000, (req, res) => {
     console.log('SERVER RUNNING IN http://localhost:3000')
 });
